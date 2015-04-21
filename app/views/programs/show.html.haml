@@ -1,0 +1,112 @@
+.row
+	.col-sm-8.col-sm-offset-2
+		/ Wizard container
+		.wizard-container
+			#wizard.card.wizard-card.ct-wizard-orange
+				/ You can switch "ct-wizard-orange"  with one of the next bright colors: "ct-wizard-blue", "ct-wizard-green", "ct-wizard-orange", "ct-wizard-red"
+				.wizard-header
+					%h3
+						%b SIMULATE
+						YOUR CODE
+						%br/
+						%small Ridiculously Simple Computer (RiSC-16) Simulator.
+				%ul
+					%li
+						%a{"data-toggle" => "tab", :href => "#about"} Program
+				.tab-content
+					#about.tab-pane
+						.row
+							%h4.info-text Configuration
+							.col-sm-12
+								%table.table-stripped.table-bordered.table-condensed
+									%tr.war
+										%th No. Cache Levels
+										%th Starting Address
+										%th ROB Entries
+										%th Instruction Buffer
+										%th Pipline Width
+									%tr
+										%td= @program.cache_levels.count
+										%td= @program.starting_address
+										%td= @program.number_of_rob_enteries
+										%td= @program.size_of_instruction_buffer
+										%td= @program.pipeline_width
+						.row
+							%h4.info-text Cache
+							.col-sm-12		
+								%table.table-stripped.table-bordered.table-condensed
+									%tr.war
+										%th Level
+										%th Size
+										%th Line Size
+										%th No. Cycles to Access MEM
+										%th Associativity
+										%th Policy
+										%th.err Hit Ratio
+									- @program.cache_levels.each do |level|
+										%tr
+											%td= level.number
+											%td= level.size
+											%td= level.line_size
+											%td= level.number_of_cycles_to_access_data
+											%td= level.associativity
+											%td= level.policy
+											%td.succ 0%
+						.row
+							%h4.info-text Activity
+							.col-sm-12.col-sm-offset-1	
+								%table.table-stripped.table-bordered.table-condensed
+									%tr.war
+										%th Id
+										%th Instruction
+										%th Fetched
+										%th Issued
+										%th Exectuted
+										%th Written
+										%th Commited
+									- @program.cycles.last.activities.each do |activity|
+										%tr
+											%td= activity.number # Stays the same
+											%td= activity.instruction_memory.value
+											%td 
+												="(#{activity.fetched})"
+												%i.glyphicon.glyphicon-trash
+											%td 
+												="(#{activity.issued})"
+												%i.glyphicon.glyphicon-trash
+											%td 
+												="(#{activity.executed})"
+												%i.glyphicon.glyphicon-trash
+											%td 
+												="(#{activity.written})"
+												%i.glyphicon.glyphicon-trash
+											%td 
+												="(#{activity.commited})"
+												%i.glyphicon.glyphicon-trash
+						.row
+							%h4.info-text Data Memory
+							.col-sm-12.col-sm-offset-3
+								%table.table-stripped.table-bordered.table-condensed
+									%tr.war
+										%th Address
+										%th Value
+									- 3.times do |i|
+										%tr
+											%td 0000000000000000
+											%td 0000000000000000
+						.row
+							%h4.info-text Result
+							.col-sm-12.col-sm-offset-2
+								%table.table-stripped.table-bordered.table-condensed
+									%tr
+										%th IPC
+										%td value
+									%tr
+										%th Total Execution Time (Cycles)
+										%td value (in cycles)
+									%tr
+										%th The Global AMAT (Cycles)
+										%td value (in cycles)
+									%tr
+										%th Branch Misprediction (Percentage)
+										%td value (in percentage)

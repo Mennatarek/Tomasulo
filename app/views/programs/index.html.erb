@@ -1,0 +1,35 @@
+<h1>Listing programs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Labels</th>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Main memory access time</th>
+      <th>Memory capacity</th>
+      <th>Starting address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @programs.each do |program| %>
+      <tr>
+        <td><%= program.labels %></td>
+        <td><%= program.name %></td>
+        <td><%= program.code %></td>
+        <td><%= program.main_memory_access_time %></td>
+        <td><%= program.memory_capacity %></td>
+        <td><%= program.starting_address %></td>
+        <td><%= link_to 'Show', program %></td>
+        <td><%= link_to 'Edit', edit_program_path(program) %></td>
+        <td><%= link_to 'Destroy', program, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Program', new_program_path %>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  size: 1
+  line_size: 1
+  associativity: 1
+  write_back: false
+  number_of_cycles_to_access_data: 1
+  program_id: 1
+
+two:
+  name: MyString
+  size: 1
+  line_size: 1
+  associativity: 1
+  write_back: false
+  number_of_cycles_to_access_data: 1
+  program_id: 1

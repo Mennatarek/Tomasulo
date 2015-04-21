@@ -1,0 +1,289 @@
+.row
+	.col-sm-8.col-sm-offset-2
+		/ Wizard container
+		.wizard-container
+			= form_for @program do |f|
+				= f.hidden_field :code
+				#wizard.card.wizard-card.ct-wizard-orange
+					/ You can switch "ct-wizard-orange"  with one of the next bright colors: "ct-wizard-blue", "ct-wizard-green", "ct-wizard-orange", "ct-wizard-red"
+					.wizard-header
+						%h3
+							%b SIMULATE
+							YOUR CODE
+							%br/
+							%small Ridiculously Simple Computer (RiSC-16) Simulator.
+					%ul
+						%li
+							%a{"data-toggle" => "tab", :href => "#about"} Configuration
+						%li
+							%a{"data-toggle" => "tab", :href => "#account"} Data
+						%li
+							%a{"data-toggle" => "tab", :href => "#address"} Instruction
+					.tab-content
+						#about.tab-pane
+							.row
+								%h4.info-text Let's start with the basic information
+								.col-sm-9.col-sm-offset-1
+									#editor_container{style: "display:block;height: 240px;"} 
+										#editor{style: "position: absolute;width: 100%;height: 230px;"} Enter Your code here
+								.col-sm-4
+									.form-group
+										%label{:for => "Program_Name"} Program Name
+										%input#dummy_program_name.form-control{:placeholder => "Program 1 ....", :type => "text", value: "Program_#{Program.count + 1}", name: "program[name]"}/
+								.col-sm-4
+									.form-group
+										%label{:for => "Cach_Levels"} Cach Levels
+										%select.form-control{:id => "cache_levels_selection", name: "program[number_of_levels]"}
+											%option{:value => 1} 1 Level
+											%option{:value => 2} 2 Levels
+											%option{:value => 3} 3 Levels
+								.col-sm-4
+									.form-group
+										%label{:for => "dummy_Starting_Address"} Starting Address
+										%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 0, onkeydown: "return isNumber(event);", name: "program[starting_address]"}/
+							.row
+								.col-sm-4
+									.form-group
+										%label{:for => "Program_Name"} No. Of ROB Enteries
+										%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", name: "program[number_of_rob_enteries]"}/
+								.col-sm-4
+									.form-group
+										%label{:for => "Cach_Levels"} Size Of Instruction Buffer
+										%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", name: "program[size_of_instruction_buffer]"}/
+								.col-sm-4
+									.form-group
+										%label{:for => "dummy_Starting_Address"} Pipeline Width
+										%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", name: "program[pipeline_width]"}/
+						#account.tab-pane
+							%h4.info-text What are the Data configurations?
+							.row
+								.col-sm-4
+									#l1
+										.lead Level 1
+										= f.hidden_field :cache_type, value: "data", name: "program[cache_levels_attributes][0][cache_type]"
+										= f.hidden_field :number, value: 1, name: "program[cache_levels_attributes][0][number]"
+										.form-group
+											%label{:for => "Program_Name"} Size
+											= f.text_field :size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 4196, name: "program[cache_levels_attributes][0][size]"
+										.form-group
+											%label{:for => "Program_Name"} Line Size
+											= f.text_field :line_size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 2, name: "program[cache_levels_attributes][0][line_size]"
+										.form-group
+											%label{:for => ""} No. Cycles to Access MEM
+											%select.form-control{name: "program[cache_levels_attributes][0][number_of_cycles_to_access_data]"}
+												%option{:value => 1} 1
+												%option{:value => 2} 2
+												%option{:value => 3} 3
+										.form-group
+											%label{:for => "Associativity"} Associativity
+											%select.form-control{name: "program[cache_levels_attributes][0][associativity]"}
+												%option{:value => 1} 1
+												%option{:value => 2} 2
+												%option{:value => 3} 3
+										.form-group
+											%label{:for => "Cach_Levels"} Policy
+											%select.form-control{name: "program[cache_levels_attributes][0][policy]"}
+												%option{:value => "write_back"} WriteBack
+												%option{:value => "write_through"} WriteThrough
+								.col-sm-4
+									#l2
+										.lead Level 2
+										= f.hidden_field :cache_type, value: "data", name: "program[cache_levels_attributes][1][cache_type]"
+										= f.hidden_field :number, value: 2, name: "program[cache_levels_attributes][1][number]"
+										.form-group
+											%label{:for => "Program_Name"} Size
+											= f.text_field :size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 4196, name: "program[cache_levels_attributes][1][size]"
+										.form-group
+											%label{:for => "Program_Name"} Line Size
+											= f.text_field :line_size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 2, name: "program[cache_levels_attributes][1][line_size]"
+										.form-group
+											%label{:for => ""} No. Cycles to Access MEM
+											%select.form-control{name: "program[cache_levels_attributes][1][number_of_cycles_to_access_data]"}
+												%option{:value => 1} 1
+												%option{:value => 2} 2
+												%option{:value => 3} 3
+										.form-group
+											%label{:for => "Associativity"} Associativity
+											%select.form-control{name: "program[cache_levels_attributes][1][associativity]"}
+												%option{:value => 1} 1
+												%option{:value => 2} 2
+												%option{:value => 3} 3
+										.form-group
+											%label{:for => "Cach_Levels"} Policy
+											%select.form-control{name: "program[cache_levels_attributes][1][policy]"}
+												%option{:value => "write_back"} WriteBack
+												%option{:value => "write_through"} WriteThrough
+								.col-sm-4
+									#l3
+										.lead Level 3
+										= f.hidden_field :cache_type, value: "data", name: "program[cache_levels_attributes][2][cache_type]"
+										= f.hidden_field :number, value: 3, name: "program[cache_levels_attributes][2][number]"
+										.form-group
+											%label{:for => "Program_Name"} Size
+											= f.text_field :size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 4196, name: "program[cache_levels_attributes][2][size]"
+										.form-group
+											%label{:for => "Program_Name"} Line Size
+											= f.text_field :line_size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 2, name: "program[cache_levels_attributes][2][line_size]"
+										.form-group
+											%label{:for => ""} No. Cycles to Access MEM
+											%select.form-control{name: "program[cache_levels_attributes][2][number_of_cycles_to_access_data]"}
+												%option{:value => 1} 1
+												%option{:value => 2} 2
+												%option{:value => 3} 3
+										.form-group
+											%label{:for => "Associativity"} Associativity
+											%select.form-control{name: "program[cache_levels_attributes][2][associativity]"}
+												%option{:value => 1} 1
+												%option{:value => 2} 2
+												%option{:value => 3} 3
+										.form-group
+											%label{:for => "Cach_Levels"} Policy
+											%select.form-control{name: "program[cache_levels_attributes][2][policy]"}
+												%option{:value => "write_back"} WriteBack
+												%option{:value => "write_through"} WriteThrough
+						#address.tab-pane
+							%h4.info-text What are the Instruction configurations?
+							.row
+								.col-sm-12
+									%h4 No. of reservation stations for:
+									%table.table-striped.table-condensed.table-bordered
+										%tr
+											%th Load
+											%th Store
+											%th Add
+											%th Mult
+											%th And
+										%tr
+											%td 
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", min: 1, name: "program[number_of_reservation_stations][load]"}/
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", min: 1,name: "program[number_of_reservation_stations][store]"}/
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", min: 1,name: "program[number_of_reservation_stations][add]"}/
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", min: 1,name: "program[number_of_reservation_stations][mult]"}/
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", min: 1,name: "program[number_of_reservation_stations][and]"}/
+								.col-sm-12
+									%h4 No. of cycles needed:
+									%table.table-striped.table-condensed.table-bordered
+										%tr
+											%th LD
+											%th SD
+											%th ADD
+											%th SUB
+											%th MULT
+											%th DIVD
+											%th AND
+										%tr
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", min: 1, name: "program[number_of_cycles_needed][LW]"}/
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);",min: 1, name: "program[number_of_cycles_needed][SW]"}/
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);",min: 1, name: "program[number_of_cycles_needed][ADD]"}/
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", min: 1,name: "program[number_of_cycles_needed][SUB]"}/
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", min: 1,name: "program[number_of_cycles_needed][MUL]"}/
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", min: 1,name: "program[number_of_cycles_needed][DIV]"}/
+											%td
+												%input#dummy_starting_address.form-control{:placeholder => "0 , 1 , 2 , 3 ...", :type => "number", value: 1, onkeydown: "return isNumber(event);", min: 1,name: "program[number_of_cycles_needed][NAND]"}/
+								/ .col-sm-4
+								/ 	#l1
+								/ 		.lead Level 1
+								/ 		= f.hidden_field :cache_type, value: "instruction", name: "program[cache_levels_attributes][3][cache_type]"
+								/ 		= f.hidden_field :number, value: 1, name: "program[cache_levels_attributes][3][number]"
+								/ 		.form-group
+								/ 			%label{:for => "Program_Name"} Size
+								/ 			= f.text_field :size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 4196, name: "program[cache_levels_attributes][3][size]"
+								/ 		.form-group
+								/ 			%label{:for => "Program_Name"} Line Size
+								/ 			= f.text_field :line_size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 2, name: "program[cache_levels_attributes][3][line_size]"
+								/ 		.form-group
+								/ 			%label{:for => ""} No. Cycles to Access MEM
+								/ 			%select.form-control{name: "program[cache_levels_attributes][3][number_of_cycles_to_access_data]"}
+								/ 				%option{:value => 1} 1
+								/ 				%option{:value => 2} 2
+								/ 				%option{:value => 3} 3
+								/ 		.form-group
+								/ 			%label{:for => "Associativity"} Associativity
+								/ 			%select.form-control{name: "program[cache_levels_attributes][3][associativity]"}
+								/ 				%option{:value => 1} 1
+								/ 				%option{:value => 2} 2
+								/ 				%option{:value => 3} 3
+								/ 		.form-group
+								/ 			%label{:for => "Cach_Levels"} Policy
+								/ 			%select.form-control{name: "program[cache_levels_attributes][3][policy]"}
+								/ 				%option{:value => "write_back"} WriteBack
+								/ 				%option{:value => "write_through"} WriteThrough
+								/ .col-sm-4
+								/ 	#l2
+								/ 		.lead Level 2
+								/ 		= f.hidden_field :cache_type, value: "instruction", name: "program[cache_levels_attributes][4][cache_type]"
+								/ 		= f.hidden_field :number, value: 2, name: "program[cache_levels_attributes][4][number]"
+								/ 		.form-group
+								/ 			%label{:for => "Program_Name"} Size
+								/ 			= f.text_field :size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 4196, name: "program[cache_levels_attributes][4][size]"
+								/ 		.form-group
+								/ 			%label{:for => "Program_Name"} Line Size
+								/ 			= f.text_field :line_size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 2, name: "program[cache_levels_attributes][4][line_size]"
+								/ 		.form-group
+								/ 			%label{:for => ""} No. Cycles to Access MEM
+								/ 			%select.form-control{name: "program[cache_levels_attributes][4][number_of_cycles_to_access_data]"}
+								/ 				%option{:value => 1} 1
+								/ 				%option{:value => 2} 2
+								/ 				%option{:value => 3} 3
+								/ 		.form-group
+								/ 			%label{:for => "Associativity"} Associativity
+								/ 			%select.form-control{name: "program[cache_levels_attributes][4][associativity]"}
+								/ 				%option{:value => 1} 1
+								/ 				%option{:value => 2} 2
+								/ 				%option{:value => 3} 3
+								/ 		.form-group
+								/ 			%label{:for => "Cach_Levels"} Policy
+								/ 			%select.form-control{name: "program[cache_levels_attributes][4][policy]"}
+								/ 				%option{:value => "write_back"} WriteBack
+								/ 				%option{:value => "write_through"} WriteThrough
+								/ .col-sm-4
+								/ 	#l3
+								/ 		.lead Level 3
+								/ 		= f.hidden_field :cache_type, value: "instruction", name: "program[cache_levels_attributes][5][cache_type]"
+								/ 		= f.hidden_field :number, value: 3, name: "program[cache_levels_attributes][5][number]"
+								/ 		.form-group
+								/ 			%label{:for => "Program_Name"} Size
+								/ 			= f.text_field :size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 4196, name: "program[cache_levels_attributes][5][size]"
+								/ 		.form-group
+								/ 			%label{:for => "Program_Name"} Line Size
+								/ 			= f.text_field :line_size,  class: "form-control", max: 64000, step: 2, min: 0, type: "number", value: 2, name: "program[cache_levels_attributes][5][line_size]"
+								/ 		.form-group
+								/ 			%label{:for => ""} No. Cycles to Access MEM
+								/ 			%select.form-control{name: "program[cache_levels_attributes][5][number_of_cycles_to_access_data]"}
+								/ 				%option{:value => 1} 1
+								/ 				%option{:value => 2} 2
+								/ 				%option{:value => 3} 3
+								/ 		.form-group
+								/ 			%label{:for => "Associativity"} Associativity
+								/ 			%select.form-control{name: "program[cache_levels_attributes][5][associativity]"}
+								/ 				%option{:value => 1} 1
+								/ 				%option{:value => 2} 2
+								/ 				%option{:value => 3} 3
+								/ 		.form-group
+								/ 			%label{:for => "Cach_Levels"} Policy
+								/ 			%select.form-control{name: "program[cache_levels_attributes][5][policy]"}
+								/ 				%option{:value => "write_back"} WriteBack
+								/ 				%option{:value => "write_through"} WriteThrough
+					.wizard-footer
+						.pull-right
+							%input.btn.btn-next.btn-fill.btn-warning.btn-wd.btn-sm{:name => "next", :type => "button", :value => "Next"}/
+							%input.btn.btn-finish.btn-fill.btn-warning.btn-wd.btn-sm{:name => "finish", :type => "button", :value => "Finish", onclick:"window.submit_form()"}/
+							%input.btn.btn-compile.btn-fill.btn-warning.btn-wd.btn-sm{:name => "next", :type => "button", :value => "Compile", onclick: "window.compileProgram();"}/
+						.pull-left
+							%input.btn.btn-previous.btn-fill.btn-default.btn-wd.btn-sm{:name => "previous", :type => "button", :value => "Previous"}/
+						.clearfix
+:javascript
+	var editor = ace.edit("editor");
+	editor.setTheme("ace/theme/solarized_dark");
+	editor.setValue("ADDI $5 $0 5\nADDI $4 $4 5\nADDI $2 $2 1\nBEQ $5 $2 3\nJMP $2 2\nSW $4 $0 18\nLW $4 $0 1\nJALR $4 $5\nADD $4 $4 $4\nADDI $3 $0 26\nADDI $6 $0 18\nADDI $6 $6 2\nADD $2 $2 $1\nSW $2 $6 0\n#DATA\n2,3\n6,8");
+	$.map($('.steps'), function(el) { $(el).val($(el).data('max')); });

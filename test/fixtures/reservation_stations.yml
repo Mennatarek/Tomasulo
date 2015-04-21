@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  remaining_cycles: 1
+  name: MyString
+  busy: false
+  operation: MyString
+  vk: MyString
+  vj: MyString
+  qj: 1
+  qk: 1
+  destination: 1
+  address: MyString
+  cycle_id: 1
+
+two:
+  remaining_cycles: 1
+  name: MyString
+  busy: false
+  operation: MyString
+  vk: MyString
+  vj: MyString
+  qj: 1
+  qk: 1
+  destination: 1
+  address: MyString
+  cycle_id: 1

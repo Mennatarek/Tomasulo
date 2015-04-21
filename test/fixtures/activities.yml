@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  instruction_memory_id: 1
+  issued: 1
+  executed: 1
+  written: 1
+  commited: 1
+  cycle_id: 1
+
+two:
+  instruction_memory_id: 1
+  issued: 1
+  executed: 1
+  written: 1
+  commited: 1
+  cycle_id: 1

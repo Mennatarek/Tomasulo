@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 1
+  instruction_type: MyString
+  destination_register_name: MyString
+  value: MyString
+  ready: false
+  tail: false
+  head: false
+
+two:
+  number: 1
+  instruction_type: MyString
+  destination_register_name: MyString
+  value: MyString
+  ready: false
+  tail: false
+  head: false

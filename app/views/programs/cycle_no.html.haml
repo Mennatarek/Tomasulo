@@ -1,0 +1,64 @@
+.row
+	.col-sm-12
+		/ Wizard container
+		.wizard-container
+			#wizard.card.wizard-card.ct-wizard-orange
+				%h2="Cycle #{@cycle.cycle_number}"
+
+				%h4="Instruction Memory"
+				%table.table-bordered.table-responsive
+					%tr
+						%th Address
+						%th Value
+
+					- @program.instruction_memories.each do |im|
+						%tr
+							%td=im.address
+							%td=im.value
+							%td=im.name
+
+				- @program.cache_levels.data_only.each do |level|
+					-  data_cache = @cycle.data_caches.where(cache_level: level)
+					%h4="Data Cache Level #{level.number}"
+					%table.table-bordered.table-responsive
+						%tr
+							%th Address
+							%th Value
+							%th Hit
+							%th Dirty Bit
+							%th HIT/MISS
+						- data_cache.each do |dc|
+							%tr
+								%td=dc.address
+								%td=dc.value
+								%td=dc.hit
+								%td=dc.dirty_bit
+								%td=dc.hit? ? "HIT" : "MISS" 
+
+				%h4="Data Memory"
+				%table.table-bordered.table-responsive
+					%tr
+						%th Address
+						%th Value
+					- @cycle.data_memories.each do |data_mem|
+						%tr
+							%td=data_mem.address
+							%td=data_mem.value
+
+				%h4="Register File"
+				%table.table-bordered.table-responsive
+					%tr
+						%th name
+						%th Value
+					- @cycle.registers.each do |r|
+						%tr
+							%td=r.name
+							%td=r.value
+
+
+			.wizard-footer
+				.pull-right
+					= link_to "Next Cycle", program_path(@program, :cycle => @cycle.cycle_number + 1), class: "btn btn-next btn-fill btn-warning btn-wd"
+				.pull-left
+					= link_to "Previous Cycle", program_path(@program, :cycle => @cycle.cycle_number - 1), class: "btn btn-previous btn-fill btn-default btn-wd"
+				.clearfix

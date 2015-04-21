@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  rs_name: MyString
+  rt_name: MyString
+  rd_name: MyString
+  imm_value: 1
+  number_of_cycles: 1
+  remaining_number_of_cycles: 1
+  program_id: 1
+  address: 1
+
+two:
+  type: 
+  rs_name: MyString
+  rt_name: MyString
+  rd_name: MyString
+  imm_value: 1
+  number_of_cycles: 1
+  remaining_number_of_cycles: 1
+  program_id: 1
+  address: 1

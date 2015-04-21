@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  labels: MyText
+  name: MyString
+  code: MyText
+  main_memory_access_time: 1
+  memory_capacity: 1
+  starting_address: 1
+
+two:
+  labels: MyText
+  name: MyString
+  code: MyText
+  main_memory_access_time: 1
+  memory_capacity: 1
+  starting_address: 1

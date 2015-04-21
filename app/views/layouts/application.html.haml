@@ -1,0 +1,39 @@
+%html
+	%head
+		%meta{:charset => "utf-8"}/
+		%meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+		%title Simulator
+		%meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0", :name => "viewport"}/
+		%meta{:content => "width=device-width", :name => "viewport"}/
+
+		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+		= javascript_include_tag 'application', 'data-turbolinks-track' => true
+		/%link{:href => "http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css", :rel => "stylesheet"}/
+		= csrf_meta_tags
+	%body{style: "background: url(#{asset_path('mp.jpg')}) no-repeat center top fixed;"}
+		/ = yield
+		.image-container.set-full-height
+			/ Creative Tim Branding
+			%a{:href => ""}
+				.logo-container
+					.logo
+						= image_tag("new_logo.png")
+					.brand
+						RiSC16
+			/ Big container
+			.container
+				= yield
+			.footer
+				.container
+					Made By
+					/ %i.fa.fa-heart.heart
+					by Mohamed, Sarah, Menna, and Rania
+			.fixed-plugin
+				.dropdown.open
+					%a{"data-toggle" => "dropdown", :href => "#"}
+						%i.fa.fa-cog.fa-2x
+					%ul.dropdown-menu
+						%li.active
+							%a{:href => root_path}
+								%img{:src => "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/blue-jelly-icons-alphanumeric/069596-blue-jelly-icon-alphanumeric-plus-sign-simple.png"}
+								New Program

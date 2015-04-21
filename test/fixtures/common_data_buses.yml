@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cycle_id: 1
+  activity_number: 1
+  register_name: MyString
+  address: MyString
+  value: MyString
+
+two:
+  cycle_id: 1
+  activity_number: 1
+  register_name: MyString
+  address: MyString
+  value: MyString
